@@ -3,8 +3,8 @@
   "private": true,
   "version": "1.0.0",
   "zephyr:dependencies": {
-    "mf_github_provider": "zephyr:mf_github_provider@*",
-    "mf_linkedin_provider": "zephyr:mf_linkedin_provider@*"
+    "github": "zephyr:mf_github_provider@development",
+    "linkedin": "zephyr:mf_linkedin_provider@development"
   },
   "scripts": {
     "dev": "rsbuild dev --open",

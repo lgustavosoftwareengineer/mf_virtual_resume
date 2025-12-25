@@ -28,14 +28,6 @@ export default defineConfig({
   ],
   server: {
     port: 3002,
-    cors: true,
-  },
-  tools: {
-    rspack: {
-      watchOptions: {
-        ignored: ['**/dist/**', '**/node_modules/**', '**/@mf-types/**', '**/*.zip'],
-      },
-    },
   },
 });
 

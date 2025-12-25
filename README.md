@@ -159,41 +159,61 @@ For more details, see the [Zephyr Remote Dependencies documentation](https://doc
 - **Automatic Resolution**: Zephyr automatically resolves remote dependencies - no need to manually update URLs
 - **Local Development**: For local development, use `.env` files with localhost URLs (Zephyr will use these as fallback if dependencies can't be resolved)
 
+### Known Limitations
+
+⚠️ **Runtime Provider Resolution**: The consumer application is configured to use environment variables (`ZE_PUBLIC_LINKEDIN_URL` and `ZE_PUBLIC_GITHUB_URL`) to resolve the Module Federation remotes. While the providers are successfully deployed and accessible, the consumer application may encounter issues finding the deployed providers at runtime. This appears to be a runtime resolution issue rather than a build-time configuration problem.
+
 For more details, see the [Zephyr Cloud Rsbuild documentation](https://docs.zephyr-cloud.io/integrations/react-rsbuild).
 
 ## Environment Variables
 
-The project uses environment variables for **local development only**. For Zephyr Cloud deployments, remote URLs are automatically resolved via `zephyr:dependencies` in `package.json`.
-
-### Local Development Setup
-
-1. **Copy the example file:**
-   ```bash
-   cd mf_consumer
-   cp .env.example .env
-   ```
-
-2. **Configure URLs:**
-   - For **local development**: The `.env` file is already configured with localhost URLs
-   - For **Zephyr Cloud deployment**: No `.env` file needed - Zephyr automatically resolves dependencies via `zephyr:dependencies`
+The project uses environment variables to configure Module Federation remotes. These are required for both local development and Zephyr Cloud deployments.
 
 ### Environment Variables
 
-**Consumer (.env):**
-- `LINKEDIN_PROVIDER_URL` - URL to the LinkedIn provider's manifest file
-- `GITHUB_PROVIDER_URL` - URL to the GitHub provider's manifest file
+**Consumer (mf_consumer):**
 
-**Note:** For Zephyr Cloud deployments, you don't need to set these environment variables. Zephyr automatically resolves and injects the URLs from `zephyr:dependencies` in `package.json`.
+The consumer application requires the following environment variables to be set:
 
-**Example for local development:**
+- `ZE_PUBLIC_LINKEDIN_URL` - Base URL to the LinkedIn provider (without `/mf-manifest.json`)
+- `ZE_PUBLIC_GITHUB_URL` - Base URL to the GitHub provider (without `/mf-manifest.json`)
+
+**Note:** The `ZE_PUBLIC_` prefix indicates these are public environment variables that will be available in the browser. The URLs should be the base URL of the provider, and the `/mf-manifest.json` path will be appended automatically in the configuration.
+
+### Local Development Setup
+
+1. **Create a `.env` file in `mf_consumer` directory:**
+   ```bash
+   cd mf_consumer
+   ```
+
+2. **Add the environment variables:**
+   ```env
+   ZE_PUBLIC_LINKEDIN_URL=http://localhost:3002
+   ZE_PUBLIC_GITHUB_URL=http://localhost:3003
+   ```
+
+### Zephyr Cloud Deployment
+
+For Zephyr Cloud deployments, you need to set these environment variables in your Zephyr project settings:
+
+1. **Set environment variables in Zephyr Cloud:**
+   - `ZE_PUBLIC_LINKEDIN_URL` - The deployed LinkedIn provider URL (e.g., `https://your-linkedin-provider.zephyrcloud.app`)
+   - `ZE_PUBLIC_GITHUB_URL` - The deployed GitHub provider URL (e.g., `https://your-github-provider.zephyrcloud.app`)
+
+2. **Important:** These environment variables are required at build time. The consumer application will fail to build if these are not set.
+
+**Example for Zephyr Cloud:**
 ```env
-LINKEDIN_PROVIDER_URL=http://localhost:3002/mf-manifest.json
-GITHUB_PROVIDER_URL=http://localhost:3003/mf-manifest.json
+ZE_PUBLIC_LINKEDIN_URL=https://t-web-latest-luiz-gustavo-mf-linkedin-provider-mf-vir-aec68b-ze.zephyrcloud.app
+ZE_PUBLIC_GITHUB_URL=https://t-web-latest-luiz-gustavo-mf-github-provider-mf-virtu-11a8f1-ze.zephyrcloud.app
 ```
 
 ### Notes
 
-- Make sure all providers are running before accessing the consumer
-- Providers should be on ports 3002 (LinkedIn) and 3003 (GitHub)
+- Make sure all providers are running before accessing the consumer in local development
+- Providers should be on ports 3002 (LinkedIn) and 3003 (GitHub) for local development
 - The consumer runs on port 3000
-- `.env` files are gitignored - use `.env.example` as a template
+- `.env` files are gitignored - create your own `.env` file for local development
+- For Zephyr Cloud, set these variables in your project's environment settings
+- The URLs should be base URLs without the `/mf-manifest.json` suffix - this is appended automatically in the configuration
