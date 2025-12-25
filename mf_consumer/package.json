@@ -3,8 +3,8 @@
   "private": true,
   "version": "1.0.0",
   "zephyr:dependencies": {
-    "linkedin": "mf_linkedin_provider.mf-virtual-resume.lgustavosoftwareengineer@latest",
-    "github": "mf_github_provider.mf-virtual-resume.lgustavosoftwareengineer@latest"
+    "github": "mf_github_provider.mf-virtual-resume.lgustavosoftwareengineer@1.0.0",
+    "linkedin": "mf_linkedin_provider.mf-virtual-resume.lgustavosoftwareengineer@1.0.0"
   },
   "scripts": {
     "dev": "rsbuild dev --open",
@@ -23,20 +23,21 @@
     "@module-federation/rsbuild-plugin": "^0.22.0",
     "@rsbuild/core": "^1.2.15",
     "@rsbuild/plugin-react": "^1.1.1",
+    "@tailwindcss/postcss": "^4.1.18",
+    "@types/node": "^20.11.0",
     "@types/react": "^18.3.11",
     "@types/react-dom": "~18.3.1",
-    "@types/node": "^20.11.0",
-    "typescript": "^5.7.2",
-    "tailwindcss": "^4.1.18",
-    "@tailwindcss/postcss": "^4.1.18",
-    "postcss": "^8.5.6",
-    "autoprefixer": "^10.4.23",
-    "zephyr-rsbuild-plugin": "^0.1.2",
-    "eslint": "^8.57.0",
     "@typescript-eslint/eslint-plugin": "^7.0.0",
     "@typescript-eslint/parser": "^7.0.0",
+    "autoprefixer": "^10.4.23",
+    "dotenv": "^17.2.3",
+    "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.34.0",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "prettier": "^3.2.5"
+    "postcss": "^8.5.6",
+    "prettier": "^3.2.5",
+    "tailwindcss": "^4.1.18",
+    "typescript": "^5.7.2",
+    "zephyr-rsbuild-plugin": "^0.1.2"
   }
 }
