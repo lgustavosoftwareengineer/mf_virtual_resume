@@ -9,7 +9,7 @@ export default defineConfig({
     pluginModuleFederation({
       name: 'mf_linkedin_provider',
       exposes: {
-        './linkedin-section': './src/components/LinkedInSection.tsx',
+        '.': './src/components/index.tsx',
       },
       shared: {
         react: {

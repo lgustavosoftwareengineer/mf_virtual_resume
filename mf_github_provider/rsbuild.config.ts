@@ -9,7 +9,7 @@ export default defineConfig({
     pluginModuleFederation({
       name: 'mf_github_provider',
       exposes: {
-        './github-section': './src/components/GitHubSection.tsx',
+        '.': './src/components/index.tsx',
       },
       shared: {
         react: {
