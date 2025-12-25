@@ -1,7 +1,7 @@
 import { Suspense, lazy } from 'react';
 
-const LinkedInSection = lazy(() => import('linkedin'));
-const GitHubSection = lazy(() => import('github'));
+const LinkedInSection = lazy(() => import('linkedin/linkedin-section'));
+const GitHubSection = lazy(() => import('github/github-section'));
 
 const App = () => {
   return (

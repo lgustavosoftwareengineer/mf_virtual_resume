@@ -3,8 +3,8 @@
   "private": true,
   "version": "1.0.0",
   "zephyr:dependencies": {
-    "github": "mf_github_provider.mf-virtual-resume.lgustavosoftwareengineer@1.0.0",
-    "linkedin": "mf_linkedin_provider.mf-virtual-resume.lgustavosoftwareengineer@1.0.0"
+    "mf_github_provider": "zephyr:mf_github_provider@*",
+    "mf_linkedin_provider": "zephyr:mf_linkedin_provider@*"
   },
   "scripts": {
     "dev": "rsbuild dev --open",

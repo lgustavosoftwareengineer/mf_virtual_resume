@@ -8,6 +8,7 @@ const root = createRoot(document.getElementById('root')!);
 root.render(
   <StrictMode>
     <div className="p-8">
+      <h1>GitHub Section</h1>
       <GitHubSection />
     </div>
   </StrictMode>
